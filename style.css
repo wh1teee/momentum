@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    color: black;
+
+    font-family: 'Quicksand', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.time {
+    font-size: 8rem;
+}
+
+h1 {
+    margin-bottom: 3rem;
+}
+
+h2 {
+    margin-bottom: .5rem;
+    opacity: .6;
+}
+
+@media (max-width: 769px) {
+    .time {
+        font-size: 6rem;
+    }
+}
