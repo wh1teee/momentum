@@ -6,8 +6,10 @@ body {
     align-items: center;
     text-align: center;
     height: 100vh;
-    /*color: black;*/
 
+    color: white;
+    background: center / cover;
+    transition: all 0.8s linear;
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -21,6 +23,24 @@ h1, h2, h3 {
 
 p {
     margin: 0;
+}
+
+
+.nav {
+    padding: 0 20px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav a {
+    text-decoration: none;
+    color: white;
+    transition: opacity 0.2s linear;
+}
+
+.nav a:hover {
+    opacity: .6;
 }
 
 .time {
@@ -41,6 +61,7 @@ h2 {
         font-size: 6rem;
     }
 }
+
 @media (max-width: 500px) {
     .time {
         font-size: 3.1rem;
