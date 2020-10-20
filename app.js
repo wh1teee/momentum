@@ -8,7 +8,7 @@ const focus = document.querySelector('.focus')
 
 
 //show AM PM
-const showAmPm = true
+const showAmPm = false
 
 //show time
 
@@ -16,18 +16,24 @@ function showTime() {
     let today = new Date(),
         hour = today.getHours(),
         minutes = today.getMinutes(),
-        seconds = today.getSeconds()
+        seconds = today.getSeconds(),
+        weekDay = today.toLocaleString('ru-RU', { weekday: 'long' }),
+        day = today.toLocaleString('ru-RU', { day: 'numeric' }),
+        month = today.toLocaleString('ru-RU', { month: 'long' });
+
 
     //PM or AM
     const amPm = hour >= 12 ? 'PM' : 'AM'
 
     //12hr format
-    hour = hour % 12 || 12
+    if (showAmPm) {
+        hour = hour % 12 || 12
+    }
 
     //output time
     time.innerHTML = `${hour}<span>:</span>${addZero(minutes)}<span>:</span>${
         addZero(seconds)
-    } ${showAmPm ? amPm : ''}`;
+    } ${showAmPm ? amPm : ''} <br>${weekDay} ${day} ${month.slice(0, -1)}я`;
 
     setTimeout(showTime, 1000);
 }
