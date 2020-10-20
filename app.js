@@ -7,8 +7,7 @@ const name = document.querySelector('.name')
 const focus = document.querySelector('.focus')
 
 
-//show AM PM
-const showAmPm = false
+
 
 //show time
 
@@ -21,6 +20,9 @@ function showTime() {
         day = today.toLocaleString('ru-RU', { day: 'numeric' }),
         month = today.toLocaleString('ru-RU', { month: 'long' });
 
+
+    //show AM PM
+    const showAmPm = false
 
     //PM or AM
     const amPm = hour >= 12 ? 'PM' : 'AM'
@@ -70,7 +72,7 @@ function setBgGreet() {
 
 //get Name
 function getName() {
-    if (localStorage.getItem('name') === null) {
+    if (localStorage.getItem('name').length === 0) {
         name.textContent = "[Enter Name]"
     }else {
         name.textContent = localStorage.getItem('name')
@@ -92,7 +94,7 @@ function setName(e) {
 
 //get Focus
 function getFocus() {
-    if (localStorage.getItem('focus') === null) {
+    if (localStorage.getItem('focus').length === 0) {
         focus.textContent = "[Enter Your Focus]"
     }else {
         focus.textContent = localStorage.getItem('focus')
@@ -109,6 +111,7 @@ function setFocus(e) {
         localStorage.setItem('focus', e.target.innerText)
     }
 }
+
 
 name.addEventListener('keypress', setName)
 name.addEventListener('blur', setName)
