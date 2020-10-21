@@ -87,7 +87,7 @@ function setName(e) {
             name.blur();
         }
     }
-    if (e.target.innerText.length > 0){
+    if (e.target.innerText.length > 0) {
         localStorage.setItem('name', e.target.innerText);
 
     }
@@ -147,7 +147,7 @@ function clearFocus() {
 }
 
 
-//set day/nigth and etc. folder
+//set day/night and etc. folder
 function setTimesOfDay() {
     let today = new Date(),
         hour = today.getHours()
@@ -189,12 +189,14 @@ function bg(n = 1) {
 //change bg every hour
 let today3 = new Date(),
     hours3 = today3.getHours(),
-    minute3 = today3.getMinutes()
+    minute3 = today3.getMinutes(),
+    seconds3 = today3.getSeconds()
 
 function changeEveryHour() {
     let today = new Date(),
         hour = today.getHours(),
-        minutes = today.getMinutes()
+        minutes = today.getMinutes(),
+        seconds = today.getSeconds()
 
     //change Greeting if it need
     setBgGreet()
@@ -207,9 +209,14 @@ function changeEveryHour() {
         hours3++
     }
 
-    if (minutes !== minute3) {
+    // if (minutes !== minute3) {
+    //     nexImage()
+    //     minute3++
+    // }
+
+    if (seconds !== seconds3) {
         nexImage()
-        minute3++
+        seconds3++
     }
 
     setTimeout(changeEveryHour, 1000)
