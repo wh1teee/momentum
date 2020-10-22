@@ -73,7 +73,7 @@ function addZero(n) {
 
 //get Name
 function getName() {
-    if (localStorage.getItem('name').length === 0) {
+    if (localStorage.getItem('name') === null) {
         name.textContent = "[Enter Name]"
     } else {
         name.textContent = localStorage.getItem('name')
@@ -100,7 +100,7 @@ function setName(e) {
 
 //get Focus
 function getFocus() {
-    if (localStorage.getItem('focus').length === 0) {
+    if (localStorage.getItem('focus') === null) {
         focus.textContent = "[Enter Your Focus]"
     } else {
         focus.textContent = localStorage.getItem('focus')
