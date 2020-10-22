@@ -115,7 +115,8 @@ function setFocus(e) {
             localStorage.setItem('focus', e.target.innerText);
             focus.blur();
         }
-    } else {
+    }
+    if (e.target.innerText.length > 0) {
         localStorage.setItem('focus', e.target.innerText);
     }
 }
