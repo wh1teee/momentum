@@ -7,7 +7,7 @@ body {
     text-align: center;
     height: 100vh;
 
-    color: black;
+    color: green;
     background: center / cover;
     transition: all 0.8s linear;
     font-family: 'Quicksand', sans-serif;
