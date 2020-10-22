@@ -26,6 +26,43 @@ p {
 }
 
 
+/*Weather*/
+
+.weather {
+    display: flex;
+    flex-direction: column;
+}
+
+.nameCity {
+    margin-bottom: 8px;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+
+.nameCityInput {
+    display: none;
+    padding: 5px 10px;
+    /*border: 1px solid red;*/
+    font-family: 'Quicksand', sans-serif;
+}
+
+.nameCityInput:focus {
+    outline: none;
+    border: 2px solid #510bba;
+    border-radius: 7px;
+}
+
+
+
+.temperature {
+    margin-top: 8px;
+    font-size: 1.2rem;
+}
+
+
+/*navigation*/
+
 .nav {
     padding: 0 20px 20px;
     width: 100%;

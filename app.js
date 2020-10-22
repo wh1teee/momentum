@@ -7,6 +7,8 @@ const name = document.querySelector('.name')
 const focus = document.querySelector('.focus')
 const previous = document.querySelector('.previous')
 const next = document.querySelector('.next')
+const nameCityInput = document.querySelector('.nameCityInput')
+const nameCity = document.querySelector('.nameCity')
 
 
 //show time
@@ -209,15 +211,15 @@ function changeEveryHour() {
         hours3++
     }
 
-    // if (minutes !== minute3) {
-    //     nexImage()
-    //     minute3++
-    // }
-
-    if (seconds !== seconds3) {
+    if (minutes !== minute3) {
         nexImage()
-        seconds3++
+        minute3++
     }
+
+    // if (seconds !== seconds3) {
+    //     nexImage()
+    //     seconds3++
+    // }
 
     setTimeout(changeEveryHour, 1000)
 }
@@ -243,6 +245,61 @@ function previousImage() {
     }
 }
 
+let g = 1
+// function showHidden() {
+//     if (g % 2 !== 0) {
+//         nameCityInput.style.display = "block"
+//         g++
+//         console.log('work')
+//     }else {
+//         nameCityInput.style.display = "none"
+//         console.log('work+++')
+//         g++
+//     }
+// }
+function showHidden() {
+    let inputState = document.querySelector('.nameCityInput').style.display
+    if (inputState === 'none') {
+        document.querySelector('.nameCityInput').style.display = 'block'
+        document.querySelector('.nameCityInput').focus()
+    } else {
+        document.querySelector('.nameCityInput').style.display = 'none'
+    }
+}
+
+
+//set City Name and if press Enter display weather in this city
+let val
+function inputCity(e) {
+    if (e.which == 13 || e.keyCode == 13) {
+        val = document.querySelector('.nameCityInput').value
+        showCityName(val)
+        showWeather()
+    }else {val = document.querySelector('.nameCityInput').value}
+}
+
+//show city
+function showCityName(val = 'Minsk') {
+    if (val === '') {return 'Minsk'
+    }else return val
+}
+
+function showWeather() {
+ fetch (`https://api.openweathermap.org/data/2.5/weather?q=${showCityName(val)}&appid=7339018c06a4ea17cf9e14f85817b214`)
+        .then(function (resp) {
+            return resp.json()
+        })
+        .then(function (data) {
+            console.log(data)
+            document.querySelector('.nameCity').innerHTML = data.name
+            document.querySelector('.temperature').innerHTML = `${Math.floor(data.main.temp - 273)}&deg`
+        })
+        .catch(function () {
+
+        })
+    // showHidden()
+}
+
 
 name.addEventListener('keypress', setName)
 name.addEventListener('blur', setName)
@@ -259,6 +316,15 @@ focus.addEventListener('blur', nameFocusCheck)
 
 next.addEventListener('click', nexImage)
 previous.addEventListener('click', previousImage)
+document.querySelector('.nameCity').addEventListener('click', showHidden)
+nameCity.addEventListener('click', showHidden)
+
+nameCityInput.addEventListener('keypress', inputCity)
+nameCityInput.addEventListener('blur', inputCity)
+nameCityInput.addEventListener('blur', showWeather)
+nameCityInput.addEventListener('blur', showHidden)
+// nameCityInput.addEventListener('keypress', showWeather)
+
 
 
 showTime()
@@ -267,3 +333,4 @@ getName()
 getFocus()
 bg()
 changeEveryHour()
+showWeather()
