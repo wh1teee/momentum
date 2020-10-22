@@ -179,7 +179,7 @@ function setBgGreet() {
 //change bg
 let n = 1
 
-function bg(n = 1) {
+function bg(n) {
 
     if (n < 10) {
         document.body.style.background = `url("assets/images/${setTimesOfDay()}/0${n}.jpg")`
@@ -332,7 +332,7 @@ showTime()
 setBgGreet()
 getName()
 getFocus()
-bg()
+bg(n)
 changeEveryHour()
 nameFocusCheck()
 showWeather()
