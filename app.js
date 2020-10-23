@@ -262,7 +262,7 @@ function inputCity(e) {
 //show city
 
 function showCityName() {
-    if (localStorage.getItem('val') == null) {
+    if (localStorage.getItem('val') === null || localStorage.getItem('val') > 1) {
         return localStorage.getItem('val')
     } else {
         return 'Minsk'
