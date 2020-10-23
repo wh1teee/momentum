@@ -246,7 +246,7 @@ function showHidden() {
 
 
 //set City Name and if press Enter display weather in this city
-let val
+let val;
 
 function inputCity(e) {
     if (e.which == 13 || e.keyCode == 13) {
@@ -261,18 +261,22 @@ function inputCity(e) {
 
 //show city
 
-function showCityName(val) {
-
-    if (localStorage.getItem('val') === '') {
-        return 'Minsk'
-    } else {
+function showCityName() {
+    if (localStorage.getItem('val').length > 1) {
         return localStorage.getItem('val')
+    } else {
+        return 'Minsk'
     }
+    // if (e == '' || e == null || e == undefined) {
+    //     return 'Minsk'
+    // } else {
+    //     return e
+    // }
 
 }
 
 function showWeather() {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${showCityName(localStorage.getItem('val'))}&appid=7339018c06a4ea17cf9e14f85817b214`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${showCityName()}&appid=7339018c06a4ea17cf9e14f85817b214`)
         .then(function (resp) {
             return resp.json()
         })
@@ -285,6 +289,7 @@ function showWeather() {
 
         })
 }
+
 async function showTitle() {
     fetch(`https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`)
         .then(function (resp) {
@@ -336,3 +341,4 @@ nameFocusCheck()
 showWeather()
 
 showTitle()
+showCityName(val)
