@@ -143,6 +143,13 @@ h2 {
 
     background: rgba(172, 172, 172, 0.8);
     border-radius: 20px;
+
+    transition: transform 0.1s linear;
+}
+
+.quote__block:hover {
+   transform: scale(1.02);
+   cursor: pointer;
 }
 
 .quote {

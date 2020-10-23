@@ -8,6 +8,7 @@ const previous = document.querySelector('.previous')
 const next = document.querySelector('.next')
 const nameCityInput = document.querySelector('.nameCityInput')
 const nameCity = document.querySelector('.nameCity')
+const quote__block = document.querySelector('.quote__block')
 
 
 //show time
@@ -330,6 +331,7 @@ nameCityInput.addEventListener('blur', inputCity)
 nameCityInput.addEventListener('blur', showWeather)
 nameCityInput.addEventListener('blur', showHidden)
 // nameCityInput.addEventListener('keypress', showWeather)
+quote__block.addEventListener('click', showTitle)
 
 
 showTime()
