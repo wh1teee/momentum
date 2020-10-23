@@ -151,6 +151,9 @@ h2 {
    transform: scale(1.02);
    cursor: pointer;
 }
+.quote__block:active {
+   transform: scale(1.023);
+}
 
 .quote {
 
