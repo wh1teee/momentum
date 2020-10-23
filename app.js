@@ -143,7 +143,7 @@ function setTimesOfDay() {
         document.body.style.color = 'rgba(255, 255, 255, 0.7)'
         document.querySelector('.previous').style.color = 'rgba(255, 255, 255, 0.8)'
         document.querySelector('.next').style.color = 'rgba(255, 255, 255, 0.8)'
-        document.querySelector('.quote__block').style.color = 'rgba(255, 255, 255, 1)'
+        document.querySelector('.quote__block').style.color = 'rgb(233,230,230)'
         return 'night'
 
     }
