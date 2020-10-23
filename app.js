@@ -1,6 +1,5 @@
 const time = document.querySelector('.time')
-// const time = document.getElementsByClassName('time');
-// // const time = document.getElementById('time')
+const date = document.querySelector('.date')
 
 const greeting = document.querySelector('.greeting')
 const name = document.querySelector('.name')
@@ -33,10 +32,11 @@ function showTime() {
         hour = hour % 12 || 12
     }
 
-    //output time
+    //output time and date
+    date.innerHTML = `${weekDay} ${day} ${month.slice(0, -1)}я`
     time.innerHTML = `${hour}<span>:</span>${addZero(minutes)}<span>:</span>${
         addZero(seconds)
-    } ${showAmPm ? amPm : ''} <br>${weekDay} ${day} ${month.slice(0, -1)}я`;
+    } ${showAmPm ? amPm : ''}`;
 
     setTimeout(showTime, 1000);
 }
@@ -46,30 +46,6 @@ function addZero(n) {
     return (parseInt(n) < 10 ? '0' : '') + n
 }
 
-// //set Background and Greeting
-// function setBgGreet() {
-//     let today = new Date(),
-//         hour = today.getHours()
-//
-//     if (hour >= 6 && hour < 12) {
-//         //Morning
-//         document.body.style.backgroundImage = 'url("assets/images/morning/01.jpg")'
-//         greeting.textContent = 'Good Morning, '
-//     } else if (hour >= 12 && hour < 18) {
-//         //Day
-//         document.body.style.backgroundImage = 'url("assets/images/day/01.jpg")'
-//         greeting.textContent = 'Good Day, '
-//     } else if (hour >= 18 && hour < 24) {
-//         //Evening
-//         document.body.style.backgroundImage = 'url("assets/images/evening/01.jpg")'
-//         greeting.textContent = 'Good Evening, '
-//     } else {
-//         //Evening
-//         document.body.style.backgroundImage = 'url("assets/images/night/01.jpg")'
-//         greeting.textContent = 'Good Night, '
-//         document.body.style.color = 'white';
-//     }
-// }
 
 //get Name
 function getName() {
@@ -93,9 +69,6 @@ function setName(e) {
         localStorage.setItem('name', e.target.innerText);
 
     }
-    // else {
-    //     localStorage.setItem('name', e.target.innerText);
-    // }
 }
 
 //get Focus
@@ -163,9 +136,13 @@ function setTimesOfDay() {
         return 'day'
     } else if (hour >= 18 && hour < 24) {
         //Evening
+        document.body.style.color = 'white'
         return 'evening'
     } else {
         //night
+        document.body.style.color = 'rgba(255, 255, 255, 0.7)'
+        document.querySelector('.previous').style.color = 'rgba(255, 255, 255, 0.8)'
+        document.querySelector('.next').style.color = 'rgba(255, 255, 255, 0.8)'
         return 'night'
 
     }
@@ -178,14 +155,25 @@ function setBgGreet() {
 
 //change bg
 let n = 1
+const ggg = 'assets/images/day/01.jpg'
 
 function bg(n) {
+    const img = document.createElement('img');
 
     if (n < 10) {
-        document.body.style.background = `url("assets/images/${setTimesOfDay()}/0${n}.jpg")`
+        const src = `assets/images/${setTimesOfDay()}/0${n}.jpg`
+        img.src = src
+        img.onload = () => {
+            document.body.style.backgroundImage = `url(${src})`;
+        };
     }
+
     if (n >= 10) {
-        document.body.style.background = `url("assets/images/${setTimesOfDay()}/${n}.jpg")`
+        const src = `assets/images/${setTimesOfDay()}/${n}.jpg`
+        img.src = src
+        img.onload = () => {
+            document.body.style.backgroundImage = `url(${src})`;
+        };
     }
 }
 
@@ -246,47 +234,45 @@ function previousImage() {
     }
 }
 
-let g = 1
-// function showHidden() {
-//     if (g % 2 !== 0) {
-//         nameCityInput.style.display = "block"
-//         g++
-//         console.log('work')
-//     }else {
-//         nameCityInput.style.display = "none"
-//         console.log('work+++')
-//         g++
-//     }
-// }
 function showHidden() {
     let inputState = document.querySelector('.nameCityInput').style.display
-    if (inputState === 'none') {
+    if (inputState === 'block') {
+        document.querySelector('.nameCityInput').style.display = 'none'
+    } else {
         document.querySelector('.nameCityInput').style.display = 'block'
         document.querySelector('.nameCityInput').focus()
-    } else {
-        document.querySelector('.nameCityInput').style.display = 'none'
     }
 }
 
 
 //set City Name and if press Enter display weather in this city
 let val
+
 function inputCity(e) {
     if (e.which == 13 || e.keyCode == 13) {
-        val = document.querySelector('.nameCityInput').value
+        localStorage.setItem('val', document.querySelector('.nameCityInput').value)
         showCityName(val)
         showWeather()
-    }else {val = document.querySelector('.nameCityInput').value}
+    } else {
+        localStorage.setItem('val', document.querySelector('.nameCityInput').value)
+    }
 }
 
+
 //show city
+
 function showCityName(val = 'Minsk') {
-    if (val === '') {return 'Minsk'
-    }else return val
+
+    if (val === '') {
+        return 'Minsk'
+    } else {
+        return localStorage.getItem('val')
+    }
+
 }
 
 function showWeather() {
- fetch (`https://api.openweathermap.org/data/2.5/weather?q=${showCityName(val)}&appid=7339018c06a4ea17cf9e14f85817b214`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${showCityName(localStorage.getItem('val'))}&appid=7339018c06a4ea17cf9e14f85817b214`)
         .then(function (resp) {
             return resp.json()
         })
@@ -298,7 +284,20 @@ function showWeather() {
         .catch(function () {
 
         })
-    // showHidden()
+}
+async function showTitle() {
+    fetch(`https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`)
+        .then(function (resp) {
+            return resp.json()
+        })
+        .then(function (data) {
+            console.log(data)
+            document.querySelector('.quote').innerHTML = data.quoteText
+            document.querySelector('.author').innerHTML = `&copy; ${data.quoteAuthor}`
+        })
+        .catch(function () {
+
+        })
 }
 
 
@@ -317,7 +316,7 @@ focus.addEventListener('blur', nameFocusCheck)
 
 next.addEventListener('click', nexImage)
 previous.addEventListener('click', previousImage)
-document.querySelector('.nameCity').addEventListener('click', showHidden)
+// document.querySelector('.nameCity').addEventListener('click', showHidden)
 nameCity.addEventListener('click', showHidden)
 
 nameCityInput.addEventListener('keypress', inputCity)
@@ -325,7 +324,6 @@ nameCityInput.addEventListener('blur', inputCity)
 nameCityInput.addEventListener('blur', showWeather)
 nameCityInput.addEventListener('blur', showHidden)
 // nameCityInput.addEventListener('keypress', showWeather)
-
 
 
 showTime()
@@ -336,3 +334,5 @@ bg(n)
 changeEveryHour()
 nameFocusCheck()
 showWeather()
+
+showTitle()

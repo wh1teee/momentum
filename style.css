@@ -1,15 +1,19 @@
 body {
     margin: 0;
+    padding: 20px 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    height: 100%;
     height: 100vh;
+    /*width: 100vw;*/
 
     color: #000000;
     background: center / cover;
-    transition: all 0.8s linear;
+    background-color: #fff081;
+    transition: background-image 1s ease-in-out;
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -34,9 +38,15 @@ p {
 }
 
 .nameCity {
+    padding: 3px 10px;
+    border-radius: 15px;
     margin-bottom: 8px;
     font-size: 2rem;
     cursor: pointer;
+}
+
+.nameCity:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
 }
 
 
@@ -54,7 +64,6 @@ p {
 }
 
 
-
 .temperature {
     margin-top: 8px;
     font-size: 1.2rem;
@@ -64,49 +73,117 @@ p {
 /*navigation*/
 
 .nav {
-    padding: 0 20px 20px;
+    padding: 0 20px;
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
 .nav a {
+    border-radius: 15px;
+    padding: 5px 1px;
+    font-family: Georgia, sans-serif;
     text-decoration: none;
     color: black;
-    transition: opacity 0.2s linear;
+    font-size: 15px;
+    transition: all 0.2s linear;
 }
 
 .nav a:hover {
     opacity: .6;
+    box-shadow: 0 0 0 9999999px rgba(0, 0, 0, 0.4);
+}
+
+.date {
+    font-size: 5.2rem;
 }
 
 .time {
     font-size: 8rem;
+
 }
 
 /*Greeting*/
 
-.get__greeting{
-    display: flex;
+.get__greeting {
+    /*display: flex;*/
+    /*width: 100vw;*/
+    /*justify-content: center;*/
 }
+
+.greeting {
+    cursor: default;
+}
+
+.focus__title {
+    cursor: default;
+}
+
 h1 {
+    display: inline-block;
+    width: auto;
     margin-bottom: 3rem;
 }
 
 h2 {
+    /*display: block;*/
     margin-bottom: .5rem;
     opacity: .6;
 }
 
-@media (max-width: 769px) {
+.quote__block {
+
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px 40px;
+    margin-top: 50px;
+
+    background: rgba(255, 255, 255, .5);
+    border-radius: 20px;
+}
+
+.quote {
+
+}
+
+.author {
+    padding-top: 50px;
+}
+
+/*Media*/
+@media (max-width: 1100px) {
+    .date{
+        font-size: 3rem;
+    }
+
     .time {
-        font-size: 6rem;
+        font-size: 5rem;
+    }
+
+    .get__greeting {
+        margin-top: 20px;
+    }
+    h1{
+        margin-bottom: 30px;
     }
 }
 
+@media (max-width: 600px) {
+    .date{
+        font-size: 2rem;
+    }
+
+    .time {
+        font-size: 3rem;
+    }
+
+}
+
+
 @media (max-width: 500px) {
     .time {
-        font-size: 3.1rem;
         margin-bottom: 1rem;
     }
 
@@ -117,5 +194,52 @@ h2 {
     h2 {
         margin-bottom: .2rem;
         opacity: .6;
+    }
+}
+
+@media (max-width: 460px) {
+
+ .nav {
+     margin-bottom: 20px;
+ }
+    .date {
+        font-size: 1.7rem;
+    }
+
+    .time{
+        font-size: 2.5rem;
+    }
+
+    .get__greeting {
+       font-size: 1rem;
+    }
+}
+
+@media (max-width: 390px) {
+    .time {
+        font-size: 1.7rem;
+        /*margin-bottom: 1.8rem;*/
+    }
+
+
+    .greeting {
+        font-size: 1.3rem;
+    }
+
+    .name {
+        font-size: 1.3rem;
+    }
+
+
+    h2 {
+        font-size: 1.2rem;
+    }
+}
+
+
+@media (max-height: 600px) {
+    body {
+        height: 100%;
+        max-height: 100%;
     }
 }
