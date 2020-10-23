@@ -143,6 +143,7 @@ function setTimesOfDay() {
         document.body.style.color = 'rgba(255, 255, 255, 0.7)'
         document.querySelector('.previous').style.color = 'rgba(255, 255, 255, 0.8)'
         document.querySelector('.next').style.color = 'rgba(255, 255, 255, 0.8)'
+        document.querySelector('.quote__block').style.color = 'rgba(255, 255, 255, 1)'
         return 'night'
 
     }
@@ -262,7 +263,7 @@ function inputCity(e) {
 //show city
 
 function showCityName() {
-    if (localStorage.getItem('val') == null) {
+    if (localStorage.getItem('val') == null || localStorage.getItem('val')== '') {
         return 'Minsk'
     } else {
         return localStorage.getItem('val')
