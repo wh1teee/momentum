@@ -261,9 +261,9 @@ function inputCity(e) {
 
 //show city
 
-function showCityName(val = 'Minsk') {
+function showCityName(val) {
 
-    if (val === '') {
+    if (localStorage.getItem('val') === '') {
         return 'Minsk'
     } else {
         return localStorage.getItem('val')
